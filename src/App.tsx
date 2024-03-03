@@ -10,7 +10,7 @@ function App() {
   
 
   return (
-   <div className='App flex item-center justify-center'>
+   <div className='App flex item-center justify-center lg:h-screen'>
 
     <Main />
 

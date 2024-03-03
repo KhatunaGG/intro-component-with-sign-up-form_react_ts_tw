@@ -36,7 +36,7 @@ const Main = () => {
 
 
     return (
-        <section className='main pt-[88px] pb-[68px]  flex flex-col w-[87.2%] gap-[64px] lg:flex-row lg:w-[1110px] lg:pt-5 lg:pb-0 lg:gap-[45px] '>
+        <section className='main pt-[88px]  flex flex-col w-[87.2%] gap-[64px] items-center justify-center lg:flex-row lg:w-[1110px]  lg:gap-[45px] lg:pt-0'>
             <header className="text flex flex-col gap-4 items-center justify-center lg:w-[47.29%]  lg:items-start lg:text-[50px] lg:font-bold lg:leading-[1.1]">
                 <h1 className='text-[28px] text-center tracking-[-0.29px] leading-[1.28] text-white lg:text-[50px] lg:text-left'>Learn to code by watching others</h1>
                 <p className='text-center text-base font-normal text-white lg:text-left'>See how experienced developers solve problems in real-time. Watching scripted
