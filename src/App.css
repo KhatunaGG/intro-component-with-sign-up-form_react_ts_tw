@@ -1,0 +1,19 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+}
+
+:root {
+    --coral: #FF7979;
+    --green: #38CC8B;
+    --purple: #5E54A4;
+    --dark: #3D3B48;
+
+
+}
+
+body {
+    background-image: url(../public/assets/Desktop.jpg);
+}
