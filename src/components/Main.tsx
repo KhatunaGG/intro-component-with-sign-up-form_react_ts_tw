@@ -1,29 +1,13 @@
 import { useForm } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup'
-import * as yup from 'yup'
-
-
-type DataType = {
-    name: string;
-    lastName: string;
-    email: string;
-    password: string;
-}
-
-
-
-const schema = yup.object().shape({
-    name: yup.string().required('First Name cannot be empty').matches(/^[a-zA-Z]+$/, 'Letters only'),
-    lastName: yup.string().required('Last First Name cannot be empty').matches(/^[a-zA-Z]+$/, 'Letters only'),
-    email: yup.string().required('Email cannot be empty').email('Looks like this is not an email').matches(/^[^\s@]+@[^\s@]+\.[^\s@]+$/, 'Invalid email address'),
-    password: yup.string().required('Password cannot be empty').min(3, 'min 3 characters').max(15, 'max 15 characters').matches(/^(?=.*\d.*\d.*\d.*)[A-Za-z\d@$!%*?&]{8,}$/, 'Must contain numbers, symbols, letters, cap. letters')
-
-})
+import { useState } from 'react';
+import { DataType } from '../types';
+import { schema } from '../schema';
 
 
 
 const Main = () => {
-
+    const [isGreen, setIsGreen] = useState(false)
 
     const { register, handleSubmit, formState: { errors } } = useForm<DataType>({
         resolver: yupResolver(schema)
@@ -31,8 +15,8 @@ const Main = () => {
 
     const onSubmit = (data: DataType) => {
         console.log(data)
+        setIsGreen(true)
     }
-
 
 
     return (
@@ -54,11 +38,16 @@ const Main = () => {
                     onSubmit={handleSubmit(onSubmit)}
                     className='bg-white rounded-[10px] overflow-hidden flex flex-col gap-5 pt-6 mb-2 px-6 lg:pt-8' action="">
                     <div className="inputWrapper flex flex-col relative ">
+
                         <input
                             placeholder='Name'
                             type="text"
                             {...register('name')}
-                            className='w-full  outline-none border border-[#DEDEDE] py-[15px] pl-8 rounded-[5px] text-sm text-[var(--dark)]' />
+                            className='w-full  outline-none border border-[#DEDEDE] py-[15px] pl-8 rounded-[5px] text-sm text-[var(--dark)]'
+                            style={{
+                                border: isGreen ? '1px solid #38CC8B' : errors.name ? '1px solid red' : ''
+                            }}
+                        />
                         {errors.name &&
                             <span className='font-light text-[11px] text-[var(--coral)] text-right italic absolute top-[105%] right-0'>
                                 {errors.name.message}
@@ -67,26 +56,32 @@ const Main = () => {
                         {errors.name &&
                             <img className='w-5 h-5 lg:w-6 lg:h-6 absolute top-[26%] right-[2%] lg:right-[4%]' src='/assets/Group11.png' alt={'!'} />}
                     </div>
-
                     <div className="inputWrapper flex flex-col relative ">
                         <input
                             placeholder='Last Name'
                             type="text"
                             {...register('lastName')}
-                            className='w-full  outline-none border border-[#DEDEDE] py-[15px] pl-8 rounded-[5px] text-sm text-[var(--dark)]' />
+                            className='w-full  outline-none border border-[#DEDEDE] py-[15px] pl-8 rounded-[5px] text-sm text-[var(--dark)]'
+                            style={{
+                                border: isGreen ? '1px solid #38CC8B' : errors.name ? '1px solid red' : ''
+                            }}
+                        />
                         {errors.lastName?.message &&
                             <span className='font-light text-[11px] text-[var(--coral)] text-right italic absolute top-[105%] right-0' >
                                 {errors.lastName.message}</span>}
                         {errors.lastName &&
                             <img className='w-5 h-5 lg:w-6 lg:h-6 absolute top-[26%] right-[2%] lg:right-[4%]' src='/assets/Group11.png' alt={'!'} />}
                     </div>
-
                     <div className="inputWrapper flex flex-col relative ">
                         <input
                             placeholder='Email'
                             type="email"
                             {...register('email')}
-                            className='w-full  outline-none border border-[#DEDEDE] py-[15px] pl-8 rounded-[5px] text-sm text-[var(--dark)]' />
+                            className='w-full  outline-none border border-[#DEDEDE] py-[15px] pl-8 rounded-[5px] text-sm text-[var(--dark)]'
+                            style={{
+                                border: isGreen ? '1px solid #38CC8B' : errors.name ? '1px solid red' : ''
+                            }}
+                        />
                         {errors.email?.message &&
                             <span className='font-light text-[11px] text-[var(--coral)] text-right italic absolute top-[105%] right-0' >
                                 {errors.email.message}</span>}
@@ -99,7 +94,11 @@ const Main = () => {
                             placeholder='Password'
                             type="password"
                             {...register('password')}
-                            className='w-full  outline-none border border-[#DEDEDE] py-[15px] pl-8 rounded-[5px] text-sm text-[var(--dark)]' />
+                            className='w-full  outline-none border border-[#DEDEDE] py-[15px] pl-8 rounded-[5px] text-sm text-[var(--dark)]'
+                            style={{
+                                border: isGreen ? '1px solid #38CC8B' : errors.name ? '1px solid red' : ''
+                            }}
+                        />
                         {errors.password &&
                             <span className='font-light text-[11px] text-[var(--coral)] text-right italic absolute top-[105%] right-0' >
                                 {errors.password?.message}</span>
